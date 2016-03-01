@@ -1,5 +1,6 @@
 # imports
 from flask import Flask, request, session, g, redirect, url_for, \
+<<<<<<< HEAD
      abort, render_template, flash, jsonify, Response
 from .forms import QueryForm
 from app import app
@@ -8,6 +9,12 @@ from flask.ext import excel
 import csv
 
 query_results = None
+=======
+     abort, render_template, flash, jsonify
+from .forms import QueryForm
+from app import app
+from app.dbconnect import DbConnect
+>>>>>>> b7cbbd766b2b590e32318bdb26318550dd4a0337
 
 @app.route('/')
 @app.route('/home')
@@ -38,8 +45,11 @@ def logout():
 
 @app.route('/query', methods=['GET', 'POST'])
 def query():
+<<<<<<< HEAD
     global query_results
 
+=======
+>>>>>>> b7cbbd766b2b590e32318bdb26318550dd4a0337
     error = None
     db = DbConnect(app.config)
     logger_type_choices = db.getLoggerTypes() 
@@ -48,6 +58,10 @@ def query():
     form = QueryForm(request.form)
     form.logger_type.choices = logger_type_choices
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b7cbbd766b2b590e32318bdb26318550dd4a0337
     if request.method == 'GET':
         form.process()
     else:   
@@ -82,6 +96,7 @@ def query():
 
         # else:
         #     error = 'Invalid Submission. All fields marked with * are compulsory'
+<<<<<<< HEAD
     return render_template('query.html', title='Query', form=form, error=error, query_results = query_results)
 
 @app.route("/download",methods=['GET'])
@@ -92,6 +107,9 @@ def download():
 
 
 
+=======
+    return render_template('query.html', title='Query', form=form, error=error)
+>>>>>>> b7cbbd766b2b590e32318bdb26318550dd4a0337
 
 @app.route('/_parse_data', methods=['GET'])
 def parse_data():
